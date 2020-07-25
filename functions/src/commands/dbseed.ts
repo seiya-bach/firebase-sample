@@ -1,13 +1,13 @@
-import commander from "commander";
-import admin from "firebase-admin";
-import fs from "fs";
-import parse from "csv-parse/lib/sync";
+import commander from 'commander';
+import admin from 'firebase-admin';
+import fs from 'fs';
+import parse from 'csv-parse/lib/sync';
 
-import { Publisher } from "../services/mangarel/models/publisher";
-import { collectionName } from "../services/mangarel/constants";
-import { addCounter } from "../firestore-admin/record-counter";
+import { Publisher } from '../services/mangarel/models/publisher';
+import { collectionName } from '../services/mangarel/constants';
+import { addCounter } from '../firestore-admin/record-counter';
 
-import serviceAccount from "../mangarel-demo-ogawa-firebase-adminsdk-i1k7t-df7a2382e2.json";
+import serviceAccount from '../mangarel-demo-ogawa-firebase-adminsdk-i1k7t-df7a2382e2.json';
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
