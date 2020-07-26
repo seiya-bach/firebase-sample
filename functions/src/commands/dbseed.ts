@@ -10,6 +10,7 @@ import { addCounter } from '../firestore-admin/record-counter';
 import serviceAccount from '../mangarel-demo-ogawa-firebase-adminsdk-i1k7t-df7a2382e2.json';
 
 admin.initializeApp({
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
   credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
 });
 
@@ -19,8 +20,8 @@ const uploadSeed = async (collection: string, seedFile: string) => {
   const buffer = fs.readFileSync(seedFile);
   const records = parse(buffer.toString(), {
     columns: true,
-    delimiter: "\t",
-    skip_empty_lines: true,
+    delimiter: '\t',
+    skip_empty_lines: true, // eslint-disable-line @typescript-eslint/camelcase
   });
   const ref = db.collection(collection);
 
@@ -29,7 +30,7 @@ const uploadSeed = async (collection: string, seedFile: string) => {
       const docs: Required<Publisher>[] =
         records.map((record: Publisher) => ({
           ...record,
-          website: record.website ? record.website : null,
+          website: record.website ?? null,
           createdAt: admin.firestore.FieldValue.serverTimestamp(),
           updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         })) || [];
@@ -44,14 +45,14 @@ const uploadSeed = async (collection: string, seedFile: string) => {
     }
 
     default: {
-      throw new Error("specify target collection");
+      throw new Error('specify target collection');
     }
   }
 };
 
 commander
-  .version("0.1.0", "-v, --version")
-  .arguments("<collection><seedFile>")
+  .version('0.1.0', '-v, --version')
+  .arguments('<collection> <seedFile>')
   .action(uploadSeed);
 
 commander.parse(process.argv);
