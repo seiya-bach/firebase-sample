@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "exModuleInterop": true,
+    "esModuleInterop": true,
     "lib": ["dom", "esnext"],
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "outDir": "lib",
+    "rootDir": "src",
     "removeComments": true,
     "resolveJsonModule": true,
-    "rootDir": "src",
     "sourceMap": true,
     "strict": true,
     "target": "es2017",
